@@ -1,7 +1,7 @@
 ## Código: Memorice para 2 Jugadores
 ## Autor: Gonzalo Ignacio Vicente Tenorio
-## Fecha: 22-03-2021
-## Versión: 1.0
+## Fecha: 23-03-2021
+## Versión: 1.1
 
 
 ## Exportación de Módulos
@@ -11,6 +11,29 @@ import random as rd
 
 
 ## Definición de Funciones
+
+# Función: Generar lista
+# Entrada: lista
+# Salida: lista
+def genList(lst):
+
+    # Mientras que el largo de la lista sea menos que la cantidad de cartas solicitadas
+    while(len(lst) < numPares*2):
+
+        # Escoje un numero al azar entre 1 hasta el numero seleccionado
+        randomNum = rd.randint(1, numPares*2)
+
+        # Si está en la lista
+        while(randomNum in lst):
+
+            # Cambia de numero hasta que sea un numero diferente
+            randomNum = rd.randint(1, numPares*2)
+
+        # Si es un número diferente, entra a la lista
+        lst.append(randomNum)
+    
+    #Retorna la lista generada
+    return lst
 
 
 ## Código Principal
@@ -25,14 +48,8 @@ numPares = int(input("Escoje la cantidad de pares de cartas: "))
 # Lista de Cartas
 cards = []
 
-# Introduce numeros en la lista con la cantidad de pares de tarjetas
-for num in range(numPares*2):
-    # Si no está en la lista
-    if(not num in cards):
-        # El numero se agrega en la lista
-        cards.append(num)
-        # print(num) # SHADOWEYE
-        # print(num in cards) # SHADOWEYE
+# Genera la lista
+cards = genList(cards)
 
 # Test de salida de la lista de cartas
 print("\n" + str(cards) + "\n")
