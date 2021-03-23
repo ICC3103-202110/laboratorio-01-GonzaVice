@@ -13,21 +13,21 @@ import random as rd
 ## Definición de Funciones
 
 # Función: Generar lista
-# Entrada: lista
+# Entrada: lista, entero
 # Salida: lista
-def genList(lst):
+def genList(lst, numCards):
 
     # Mientras que el largo de la lista sea menos que la cantidad de cartas solicitadas
-    while(len(lst) < numPares*2):
+    while(len(lst) < numCards*2):
 
         # Escoje un numero al azar entre 1 hasta el numero seleccionado
-        randomNum = rd.randint(1, numPares*2)
+        randomNum = rd.randint(1, numCards*2)
 
         # Si está en la lista
         while(randomNum in lst):
 
             # Cambia de numero hasta que sea un numero diferente
-            randomNum = rd.randint(1, numPares*2)
+            randomNum = rd.randint(1, numCards*2)
 
         # Si es un número diferente, entra a la lista
         lst.append(randomNum)
@@ -49,7 +49,7 @@ numPares = int(input("Escoje la cantidad de pares de cartas: "))
 cards = []
 
 # Genera la lista
-cards = genList(cards)
+cards = genList(cards, numPares)
 
 # Test de salida de la lista de cartas
 print("\n" + str(cards) + "\n")
