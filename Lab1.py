@@ -1,18 +1,18 @@
-## Código: Memorice para 2 Jugadores
-## Autor: Gonzalo Ignacio Vicente Tenorio
-## Fecha: 23-03-2021
-## Versión: 1.2
+### Código: Memorice para 2 Jugadores
+### Autor: Gonzalo Ignacio Vicente Tenorio
+### Fecha: 23-03-2021
+### Versión: 1.2
 
 
-## Exportación de Módulos
+### Exportación de Módulos
 
-# Importar librería random
+## Importar librería random
 import random as rd
 
 
-## Definición de Funciones
+### Definición de Funciones
 
-# Función: Generar lista
+## Función: Generar lista
 # Entrada: lista, entero
 # Salida: lista
 def genList(lst, numCards):
@@ -65,22 +65,42 @@ def genList(lst, numCards):
     return lst
 
 
-## Código Principal
+### Código Principal
+
+## Creación de variables y elementos:
+
+# Lista de cartas
+cards = []
+
+# Turnos (P1 = 1, P2 = 2)
+turno = 1
+
+# Puntaje
+p1Points = 0
+p2Points = 0
+
+## Comienzo del juego
 
 # Presentación
-print("\n\n   \'¡MEMORICE!\'   \n\n")
+print("\n\n   \'MEMORICE\'   \n")
 
-# Cantidad de pares de tarjetas
-numPares = int(input("Escoje la cantidad de pares de cartas: "))
-
-# Lista de Cartas
-cards = []
+# Pide cantidad de pares de tarjetas
+numPares = int(input("Escoje la cantidad de pares de cartas para jugar: "))
 
 # Genera la lista
 cards = genList(cards, numPares)
 
-# Test de salida de la lista de cartas
-print("\n" + str(cards) + "\n")
+# Comienza el juego
+if(turno == 1):
+    print("\n\n  LISTO JUGADOR 1 \n")
+else:
+    print("\n  LISTO JUGADOR 2 \n")
 
+# Imprime cartas de la lista ocultas
+print("     CARTAS: \n")
 for iteracion in cards:
     print("*", end = " ")
+print("\n")
+
+# Test de salida de la lista de cartas
+#print("\n" + str(cards) + "\n")
