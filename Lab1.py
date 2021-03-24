@@ -81,3 +81,6 @@ cards = genList(cards, numPares)
 
 # Test de salida de la lista de cartas
 print("\n" + str(cards) + "\n")
+
+for iteracion in cards:
+    print("*", end = " ")
