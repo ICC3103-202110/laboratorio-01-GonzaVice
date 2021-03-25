@@ -1,7 +1,7 @@
 ### Código: Memorice para 2 Jugadores
 ### Autor: Gonzalo Ignacio Vicente Tenorio
-### Fecha: 23-03-2021
-### Versión: 1.2
+### Fecha: 25-03-2021
+### Versión: 1.3
 
 
 ### Exportación de Módulos
@@ -90,17 +90,40 @@ numPares = int(input("Escoje la cantidad de pares de cartas para jugar: "))
 # Genera la lista
 cards = genList(cards, numPares)
 
-# Comienza el juego
-if(turno == 1):
-    print("\n\n  LISTO JUGADOR 1 \n")
-else:
-    print("\n  LISTO JUGADOR 2 \n")
-
-# Imprime cartas de la lista ocultas
-print("     CARTAS: \n")
-for iteracion in cards:
-    print("*", end = " ")
-print("\n")
-
 # Test de salida de la lista de cartas
-#print("\n" + str(cards) + "\n")
+print("\n" + str(cards) + "\n")
+
+# Comienza el juego
+while(p1Points < 1 and p2Points < 1):
+
+    # Se decide quien comienza
+    if(turno == 1):
+        print("\n\n  LISTO JUGADOR 1 \n")
+    else:
+        print("\n  LISTO JUGADOR 2 \n")
+
+    # Imprime cartas de la lista ocultas
+    print("     CARTAS: \n")
+    for iteracion in cards:
+        print("*", end = " ")
+    print("\n")
+
+    # Imprime instrucciones
+    num1Escogido = int(input(" ESCOJE LA PRIMERA CARTA (ENTRE 1 Y " + str(len(cards)) + "): "))
+
+    # Imprime cartas de la lista ocultas excepto la primera escogida
+    print("     CARTAS: \n")
+    iteracion = 0
+    while(iteracion < len(cards)):
+        # print("iteracion = " + str(iteracion)) #SHADOWEYE
+        # print("cards[iteracion] = " + str(cards[iteracion])) #SHADOWEYE
+        if(iteracion == num1Escogido - 1):
+            print(cards[iteracion], end = " ")
+        else:
+            print("*", end = " ")
+        iteracion += 1
+    print("\n")
+
+    p1Points = 5
+
+
