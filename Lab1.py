@@ -120,6 +120,15 @@ if(seguirJuego == 'y' or seguirJuego == 'Y'):
     # Pide cantidad de pares de tarjetas
     numPares = int(input("\nESCOJE LA CANTIDAD DE PARES DE CARTAS PARA JUGAR: "))
 
+    # Si cantidad de pares de tarjetas es menor que dos pares
+    while(numPares < 2):
+
+        # Es un numero erroneo
+        print("\nNUMERO ERRONEO, ESCOJE UN NÚMERO MAYOR QUE 2")
+
+        # Vuelve a pedir hasta que introduzca un numero valido para jugar
+        numPares = int(input("\nESCOJE LA CANTIDAD DE PARES DE CARTAS PARA JUGAR: "))
+
     # Genera la lista
     cards = genList(cards, numPares)
 
@@ -233,51 +242,93 @@ while(seguirJuego == 'y' or seguirJuego == 'Y'):
         # Espacio
         print("\n")
 
+        # Imprime el valor de la primera carta
         print("CARTA 1 = " + str(num1) + "\n")
+
+        # Imprime el valor de la segunda carta
         print("CARTA 2 = " + str(num2) + "\n")
 
+        # Si el valor de las cartas elegidas coinciden
         if(num1 == num2):
-
+            
+            # Felicitaciones al usuario
             print("¡FELICIDADES! AMBAS CARTAS SON IGUALES\n")
 
+            # Remueve ambas cartas
             cards.remove(num1)
             cards.remove(num2)
 
+            # Si el turno fue del jugador 1
             if(turno == 1):
 
+                # Se le suma un punto
                 p1Points += 1
 
+            # Si el turno fue del jugador 2
             else:
-
+                
+                # Se le suma un punto
                 p2Points += 1
 
+        # Si el valor de las cartas elegidas no coinciden
         else:
 
-            print("AMBAS CARTAS NO SON IGUALES\nTURNO DEL OTRO JUGADOR\n")
+            # Explicación al usuario de que no tienen el mismo valor
+            # y que es turno del otro jugador
+            print("AMBAS CARTAS NO SON IGUALES\n")
 
+            # Si el turno fue del jugador 1
             if(turno == 1):
 
+                # Es turno del jugador 2
                 turno = 2
 
+            # Si el turno fue del jugador 2
             else:
 
+                # Es turno del jugador 1
                 turno = 1
             
+        # Imprimir la puntuación de ambos jugadores
         print("JUGADOR 1 = " + str(p1Points) + " PTS\n")
         print("JUGADOR 2 = " + str(p2Points) + " PTS\n")
         
+        # Si el jugador 1 consigue el puntaje máximo antes que el jugador 2
         if(p1Points >= puntoMax):
+
+            # El jugador 1 gana
             print("¡GANA JUGADOR 1!\n")
+
+            # El juego termina
             seguirJuego = 'n'
 
+        # Si el jugador 2 consigue el puntaje máximo antes que el jugador 1
         elif(p2Points >= puntoMax):
+
+            # El jugador 2 gana
             print("¡GANA JUGADOR 2!\n")
+
+            # El juego termina
             seguirJuego = 'n'
         
+        # Si ninguno de los dos jugadores consiguió el puntaje máximo
         else:
-            print("VUELVE A JUGAR\n")
+
+            # El juego continua
+
+            # Si el jugador coincidió las cartas
+            if(num1 == num2):
+
+                # Vuelve a jugar
+                print("VUELVE A JUGAR\n")
+
+            # Si el jugador coincidió las cartas
+            else:
+
+                # Juega el otro jugador
+                print("TURNO DEL OTRO JUGADOR\n")
 
 
 
-print("\nGRACIAS POR JUGAR!!!\n")
+print("\n¡¡¡GRACIAS POR JUGAR!!!\n")
     
