@@ -1,7 +1,7 @@
 ### Código: Memorice para 2 Jugadores
 ### Autor: Gonzalo Ignacio Vicente Tenorio
 ### Fecha: 26-03-2021
-### Versión: 1.5
+### Versión: 1.6
 
 
 
@@ -44,6 +44,7 @@ def genList(lst, numCards):
 
         # Si la lista no está vacía (si la longitud no es 0)
         else:
+
             # Mientras que la posición de iteracion sea menor que la longitud inicial de la lista
             while(iteracion < originalLenght):
 
@@ -138,9 +139,6 @@ if(seguirJuego == 'y' or seguirJuego == 'Y'):
     # Indica cuantos puntos necesita cada uno para ganar
     print("\nSE NECESITAN CONSEGUIR " + str(puntoMax) + " PUNTOS ANTES QUE EL OTRO JUGADOR PARA GANAR\n¡BUENA SUERTE!")
 
-
-# Test de salida de la lista de cartas
-# print("\n" + str(cards) + "\n") #SHADOWEYE
 
 # Comienza el juego si se decidió
 while(seguirJuego == 'y' or seguirJuego == 'Y'):
@@ -329,6 +327,6 @@ while(seguirJuego == 'y' or seguirJuego == 'Y'):
                 print("TURNO DEL OTRO JUGADOR\n")
 
 
-
+# Agradecimiento
 print("\n¡¡¡GRACIAS POR JUGAR!!!\n")
     
