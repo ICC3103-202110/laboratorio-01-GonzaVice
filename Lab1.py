@@ -112,7 +112,7 @@ seguirJuego = 'y'
 print("\n\n   \'MEMORICE\'   \n")
 
 # Opción de jugar o no jugar
-seguirJuego = input("PRESIONA \'Y\' PARA JUGAR (PRESIONA N PARA SALIR): ")
+seguirJuego = input("PRESIONA \'Y\' PARA JUGAR (PRESIONA CUALQUIER OTRA TECLA PARA SALIR): ")
 
 # Si se decide jugar
 if(seguirJuego == 'y' or seguirJuego == 'Y'):
@@ -160,6 +160,11 @@ while(seguirJuego == 'y' or seguirJuego == 'Y'):
         # Se escoje la primera elección
         card1Escogido = int(input(" ESCOJE LA PRIMERA CARTA (ENTRE 1 Y " + str(len(cards)) + "): "))
 
+        # Evita el error de no escojer bien
+        while((not card1Escogido >= 1) or (not card1Escogido <= len(cards))):
+            print("\nNUMERO ERRONEO\n")
+            card1Escogido = int(input(" ESCOJE LA PRIMERA CARTA (ENTRE 1 Y " + str(len(cards)) + "): "))
+
         # Se guarda el valor de la primera carta
         num1 = cards[card1Escogido - 1]
 
@@ -192,6 +197,11 @@ while(seguirJuego == 'y' or seguirJuego == 'Y'):
 
         # Se escoje la segunta elección
         card2Escogido = int(input(" ESCOJE LA SEGUNDA CARTA (ENTRE 1 Y " + str(len(cards)) + "): "))
+
+        # Evita el error de no escojer bieny
+        while((not card2Escogido >= 1) or (not card2Escogido <= len(cards))):
+                print("\nNUMERO ERRONEO\n")
+                card2Escogido = int(input(" ESCOJE LA SEGUNDA CARTA (ENTRE 1 Y " + str(len(cards)) + "): "))
 
         # Se guarda el valor de la segunda carta
         num2 = cards[card2Escogido - 1]
@@ -271,5 +281,3 @@ while(seguirJuego == 'y' or seguirJuego == 'Y'):
 
 print("\nGRACIAS POR JUGAR!!!\n")
     
-
-
