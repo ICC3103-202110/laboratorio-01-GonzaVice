@@ -1,7 +1,8 @@
 ### Código: Memorice para 2 Jugadores
 ### Autor: Gonzalo Ignacio Vicente Tenorio
 ### Fecha: 26-03-2021
-### Versión: 1.4
+### Versión: 1.5
+
 
 
 ### Exportación de Módulos
@@ -10,7 +11,9 @@
 import random as rd
 
 
+
 ### Definición de Funciones
+
 
 ## Función: Generar lista
 # Entrada: lista, entero
@@ -65,7 +68,27 @@ def genList(lst, numCards):
     return lst
 
 
+## Función: División de numero para que sea el puntaje máximo
+# Entrada: entero
+# Salida: entero
+def puntajeMax(num):
+
+    # Si el numero es entero
+    if(num % 2 == 0):
+
+        # Retorna la división del numero
+        return num // 2
+
+    # Si el numero no es entero
+    else:
+
+        # Retorna la división del numero más uno
+        return (num // 2) + 1
+
+
+
 ### Código Principal
+
 
 ## Creación de variables y elementos:
 
@@ -79,77 +102,174 @@ turno = 1
 p1Points = 0
 p2Points = 0
 
+# Si quiere seguir jugando, presiona Y, si no, presiona N
+seguirJuego = 'y'
+
+
 ## Comienzo del juego
 
 # Presentación
 print("\n\n   \'MEMORICE\'   \n")
 
-# Pide cantidad de pares de tarjetas
-numPares = int(input("ESCOJE LA CANTIDAD DE PARES DE CARTAS PARA JUGAR: "))
+# Opción de jugar o no jugar
+seguirJuego = input("PRESIONA \'Y\' PARA JUGAR (PRESIONA N PARA SALIR): ")
 
-# Genera la lista
-cards = genList(cards, numPares)
+# Si se decide jugar
+if(seguirJuego == 'y' or seguirJuego == 'Y'):
+
+    # Pide cantidad de pares de tarjetas
+    numPares = int(input("\nESCOJE LA CANTIDAD DE PARES DE CARTAS PARA JUGAR: "))
+
+    # Genera la lista
+    cards = genList(cards, numPares)
+
+    # Se crea el puntaje máximo para ganar el juego
+    puntoMax = puntajeMax(numPares)
+
+    # Indica cuantos puntos necesita cada uno para ganar
+    print("\nSE NECESITAN CONSEGUIR " + str(puntoMax) + " PUNTOS ANTES QUE EL OTRO JUGADOR PARA GANAR\n¡BUENA SUERTE!")
+
 
 # Test de salida de la lista de cartas
-print("\n" + str(cards) + "\n")
+# print("\n" + str(cards) + "\n") #SHADOWEYE
 
-# Comienza el juego
-while(p1Points < 1 and p2Points < 1):
+# Comienza el juego si se decidió
+while(seguirJuego == 'y' or seguirJuego == 'Y'):
 
-    # Se decide quien comienza
-    if(turno == 1):
-        print("\n\n  LISTO JUGADOR 1 \n")
-    else:
-        print("\n  LISTO JUGADOR 2 \n")
+    # Mientras que ambos puntajes sean menor que el puntaje máximo
+    while(p1Points < puntoMax and p2Points < puntoMax):
 
-    # Imprime cartas de la lista ocultas
-    print("     CARTAS: \n")
-    for iteracion in cards:
-        print("*", end = " ")
-    print("\n")
-
-    # Imprime primera elección
-    card1Escogido = int(input(" ESCOJE LA PRIMERA CARTA (ENTRE 1 Y " + str(len(cards)) + "): "))
-    num1 = cards[card1Escogido - 1]
-
-
-    # Imprime cartas de la lista ocultas excepto la primera escogida
-    print("     CARTAS: \n")
-    iteracion = 0
-    while(iteracion < len(cards)):
-        # print("iteracion = " + str(iteracion)) #SHADOWEYE
-        # print("cards[iteracion] = " + str(cards[iteracion])) #SHADOWEYE
-        if(iteracion == card1Escogido - 1):
-            print(cards[iteracion], end = " ")
+        # Se decide quien comienza
+        if(turno == 1):
+            print("\n  LISTO JUGADOR 1 \n")
         else:
+            print("\n  LISTO JUGADOR 2 \n")
+
+        # Imprime cartas de la lista ocultas
+        print("     CARTAS: \n")
+
+        # Por cada carta en la lista
+        for card in cards:
+
+            # Se imprime la carta censurada
             print("*", end = " ")
-        iteracion += 1
-    print("\n\n")
+        
+        # Espacio
+        print("\n")
 
-    # Imprime segunda elección
-    card2Escogido = int(input(" ESCOJE LA SEGUNDA CARTA (ENTRE 1 Y " + str(len(cards)) + "): "))
-    num2 = cards[card2Escogido - 1]
+        # Se escoje la primera elección
+        card1Escogido = int(input(" ESCOJE LA PRIMERA CARTA (ENTRE 1 Y " + str(len(cards)) + "): "))
 
-    # Imprime cartas de la lista ocultas excepto la primera y segunda escogida
-    print("     CARTAS: \n")
-    iteracion = 0
-    while(iteracion < len(cards)):
-        # print("iteracion = " + str(iteracion)) #SHADOWEYE
-        # print("cards[iteracion] = " + str(cards[iteracion])) #SHADOWEYE
-        if(iteracion == card1Escogido - 1 or iteracion == card2Escogido - 1):
-            print(cards[iteracion], end = " ")
+        # Se guarda el valor de la primera carta
+        num1 = cards[card1Escogido - 1]
+
+        # Imprime cartas de la lista ocultas excepto la primera escogida
+        print("     CARTAS: \n")
+
+        # Hacemos una iteración a la lista
+        iteracion = 0
+
+        # Mientras que la iteración esta en una posicion dentro de la lista
+        while(iteracion < len(cards)):
+
+            # Si la posicion es de la primera carta que se escogió
+            if(iteracion == card1Escogido - 1):
+
+                # Se imprime su valor junto con las otras cartas
+                print(cards[iteracion], end = " ")
+
+            # Si no es la posicion de la carta
+            else:
+
+                # Se imprime la carta censurada
+                print("*", end = " ")
+
+            # La iteración se suma uno para seguir recorriendo la lista hasta el último
+            iteracion += 1
+
+        # Espacio
+        print("\n\n")
+
+        # Se escoje la segunta elección
+        card2Escogido = int(input(" ESCOJE LA SEGUNDA CARTA (ENTRE 1 Y " + str(len(cards)) + "): "))
+
+        # Se guarda el valor de la segunda carta
+        num2 = cards[card2Escogido - 1]
+
+        # Imprime cartas de la lista ocultas excepto la primera y segunda escogida
+        print("     CARTAS: \n")
+
+        # Devolvemos el valor de la iteración a cero para volver a pasar por la lista
+        iteracion = 0
+
+        # Mientras que la iteración esta en una posicion dentro de la lista
+        while(iteracion < len(cards)):
+
+            # Si la posicion es de la primera o segunda carta que se escogió
+            if(iteracion == card1Escogido - 1 or iteracion == card2Escogido - 1):
+
+                # Se imprime el valor junto con las otras cartas
+                print(cards[iteracion], end = " ")
+
+            # Si no es la posicion de la carta
+            else:
+
+                # Se imprime la carta censurada
+                print("*", end = " ")
+
+            # La iteración se suma uno para seguir recorriendo la lista hasta el último
+            iteracion += 1
+
+        # Espacio
+        print("\n")
+
+        print("CARTA 1 = " + str(num1) + "\n")
+        print("CARTA 2 = " + str(num2) + "\n")
+
+        if(num1 == num2):
+
+            print("¡FELICIDADES! AMBAS CARTAS SON IGUALES\n")
+
+            cards.remove(num1)
+            cards.remove(num2)
+
+            if(turno == 1):
+
+                p1Points += 1
+
+            else:
+
+                p2Points += 1
+
         else:
-            print("*", end = " ")
-        iteracion += 1
-    print("\n\n")
 
-    print("num1 = " + str(num1))
-    print("num2 = " + str(num2))
-    if(num1 == num2):
-        print("num1 y num2 son iguales, tienes un punto")
-        p1Points += 1
-        print("p1points = " + str(p1Points))
+            print("AMBAS CARTAS NO SON IGUALES\nTURNO DEL OTRO JUGADOR\n")
+
+            if(turno == 1):
+
+                turno = 2
+
+            else:
+
+                turno = 1
+            
+        print("JUGADOR 1 = " + str(p1Points) + " PTS\n")
+        print("JUGADOR 2 = " + str(p2Points) + " PTS\n")
+        
+        if(p1Points >= puntoMax):
+            print("¡GANA JUGADOR 1!\n")
+            seguirJuego = 'n'
+
+        elif(p2Points >= puntoMax):
+            print("¡GANA JUGADOR 2!\n")
+            seguirJuego = 'n'
+        
+        else:
+            print("VUELVE A JUGAR\n")
+
+
+
+print("\nGRACIAS POR JUGAR!!!\n")
     
-    p1Points = 5
 
 
