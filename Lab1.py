@@ -1,7 +1,7 @@
 ### Código: Memorice para 2 Jugadores
 ### Autor: Gonzalo Ignacio Vicente Tenorio
-### Fecha: 25-03-2021
-### Versión: 1.3
+### Fecha: 26-03-2021
+### Versión: 1.4
 
 
 ### Exportación de Módulos
@@ -33,13 +33,13 @@ def genList(lst, numCards):
         # la longitud cambia, por lo que al iterar la lista queremos conservar la longitud inicial
         originalLenght = len(lst)
 
-        # Si la lista está vacía
+        # Si la lista está vacía (si la longitud es 0)
         if(originalLenght == 0):
 
                 # Se agrega el primer número
                 lst.append(randomNum)
 
-        # Si la lista no está vacía
+        # Si la lista no está vacía (si la longitud no es 0)
         else:
             # Mientras que la posición de iteracion sea menor que la longitud inicial de la lista
             while(iteracion < originalLenght):
@@ -85,7 +85,7 @@ p2Points = 0
 print("\n\n   \'MEMORICE\'   \n")
 
 # Pide cantidad de pares de tarjetas
-numPares = int(input("Escoje la cantidad de pares de cartas para jugar: "))
+numPares = int(input("ESCOJE LA CANTIDAD DE PARES DE CARTAS PARA JUGAR: "))
 
 # Genera la lista
 cards = genList(cards, numPares)
@@ -108,8 +108,10 @@ while(p1Points < 1 and p2Points < 1):
         print("*", end = " ")
     print("\n")
 
-    # Imprime instrucciones
-    num1Escogido = int(input(" ESCOJE LA PRIMERA CARTA (ENTRE 1 Y " + str(len(cards)) + "): "))
+    # Imprime primera elección
+    card1Escogido = int(input(" ESCOJE LA PRIMERA CARTA (ENTRE 1 Y " + str(len(cards)) + "): "))
+    num1 = cards[card1Escogido - 1]
+
 
     # Imprime cartas de la lista ocultas excepto la primera escogida
     print("     CARTAS: \n")
@@ -117,13 +119,37 @@ while(p1Points < 1 and p2Points < 1):
     while(iteracion < len(cards)):
         # print("iteracion = " + str(iteracion)) #SHADOWEYE
         # print("cards[iteracion] = " + str(cards[iteracion])) #SHADOWEYE
-        if(iteracion == num1Escogido - 1):
+        if(iteracion == card1Escogido - 1):
             print(cards[iteracion], end = " ")
         else:
             print("*", end = " ")
         iteracion += 1
-    print("\n")
+    print("\n\n")
 
+    # Imprime segunda elección
+    card2Escogido = int(input(" ESCOJE LA SEGUNDA CARTA (ENTRE 1 Y " + str(len(cards)) + "): "))
+    num2 = cards[card2Escogido - 1]
+
+    # Imprime cartas de la lista ocultas excepto la primera y segunda escogida
+    print("     CARTAS: \n")
+    iteracion = 0
+    while(iteracion < len(cards)):
+        # print("iteracion = " + str(iteracion)) #SHADOWEYE
+        # print("cards[iteracion] = " + str(cards[iteracion])) #SHADOWEYE
+        if(iteracion == card1Escogido - 1 or iteracion == card2Escogido - 1):
+            print(cards[iteracion], end = " ")
+        else:
+            print("*", end = " ")
+        iteracion += 1
+    print("\n\n")
+
+    print("num1 = " + str(num1))
+    print("num2 = " + str(num2))
+    if(num1 == num2):
+        print("num1 y num2 son iguales, tienes un punto")
+        p1Points += 1
+        print("p1points = " + str(p1Points))
+    
     p1Points = 5
 
 
